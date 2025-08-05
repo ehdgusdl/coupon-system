@@ -14,7 +14,7 @@ public class ApplyService {
     }
 
     public void apply(Long userId){
-        Long count = couponRepository.count();
+        long count = couponRepository.count();
 
         if (count > 100) {
             return;
