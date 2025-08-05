@@ -9,7 +9,7 @@ public class ApplyService {
 
     private final CouponRepository couponRepository;
 
-    public  ApplyService(CouponRepository couponRepository) {
+    public ApplyService(CouponRepository couponRepository) {
         this.couponRepository = couponRepository;
     }
 
