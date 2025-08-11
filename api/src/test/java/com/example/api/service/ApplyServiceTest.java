@@ -11,6 +11,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import static org.assertj.core.api.Assertions.*;
+import static org.awaitility.Awaitility.await;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class ApplyServiceTest {
@@ -88,7 +90,7 @@ public class ApplyServiceTest {
 
         latch.await();
 
-        Thread.sleep(10000);
+        await().atMost(10, TimeUnit.SECONDS).until(() -> couponRepository.count() == 1L);
 
         long count = couponRepository.count();
 
