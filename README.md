@@ -9,13 +9,18 @@
 - 순간적으로 몰리는 트래픽을 버틸 수 있어야함
 
 ## 구현시 문제점과 해결 방법
-### 1. 동시성 문제 (100개 이상 발급 가능)
+### 1. 동시성 문제 (100개 이상 발급되는 문제)
+<img width="2674" height="352" alt="image" src="https://github.com/user-attachments/assets/dfe0b342-28f5-46f0-b995-479d2dae3694" />
+
 - 해결 방법: redis의 incr사용
   - redis는 싱글 스레드라 발급 작업이라 한번에 하나의 작업만 가능
 
 ### 2. 쿠폰 발급시 지연 문제와 부하 문제
-- Kafka로 문제 해결
+![gif gif mp4](https://github.com/user-attachments/assets/0f2a0347-09d5-4a69-b169-feb34f0a232d)
 
+
+- 해결방법: Kafka로 문제 해결
+  - Kafka를 통해서 쿠폰 발급 요청을 받고 컨슈머의 처리 속도가 조절하여 DB가 감당할수 있는 양 만큼 요청을 보낸다
 
 ### 3. 한명이 여러개 쿠폰 발급하는 문제
 - 해결 방법: redis의 set사용
