@@ -1,6 +1,8 @@
 package com.example.api.service;
 
 import com.example.api.repository.CouponRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +21,16 @@ public class ApplyServiceTest {
     @Autowired
     private CouponRepository couponRepository;
 
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @BeforeEach
+    public void setUp() {
+        // "coupon_count"는 CouponCountRepository에서 사용하는 키 이름으로 가정
+        // 실제 사용하는 키 이름으로 변경해야 합니다.
+        redisTemplate.delete("coupon_count");
+    }
+
     @Test
     public void 한번만응모() {
         applyService.apply(1l);
@@ -36,7 +48,7 @@ public class ApplyServiceTest {
 
         for (int i = 0; i < threadCount; i++) {
             long userId = i;
-            executorService.submit(() ->{
+            executorService.submit(() -> {
                 try {
                     applyService.apply(userId);
                 } finally {
@@ -48,10 +60,11 @@ public class ApplyServiceTest {
 
         latch.await();
 
+        Thread.sleep(10000);
+
         long count = couponRepository.count();
 
         assertThat(count).isEqualTo(100);
-
 
     }
 }
