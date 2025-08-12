@@ -2,6 +2,7 @@
 
 <img width="910" height="415" alt="image" src="https://github.com/user-attachments/assets/3dcf8862-2ed6-49c9-8c7d-9e0d35dc9cee" />
 
+블로그: https://velog.io/@kim138762/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%84%A0%EC%B0%A9%EC%88%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C
 
 ### 선착순 100명에게 할인쿠폰 제공하는 이벤트의 조건
 - 선착순 100명에게만 지급되어야함
